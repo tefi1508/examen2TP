@@ -29,6 +29,11 @@
         <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.nombre}"></option>
     </select>
 
+    <p>Nivel de precio:</p>
+    <select name="levelprice" id="levelprice">
+        <option th:each="levelPrice : ${levelPrices}" th:value="${levelPrice.id}" th:text="${levelPrice.description}"></option>
+    </select>
+
     <br/>
 
     <input type="submit" value="Guardar"></input>

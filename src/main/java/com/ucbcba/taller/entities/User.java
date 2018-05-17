@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.sql.Blob;
 import java.util.Set;
 
-/**
- * Created by alvaro on 10/5/17.
- */
+
 
 @Entity
 @Table(name = "user")
@@ -20,6 +18,14 @@ public class User {
     private Blob photo;
     private boolean admin=false;
     private Set<Role> roles;
+
+    @ManyToOne
+    @JoinColumn(name="city_id")
+    private City city;
+
+    public City getCity(){return city;}
+
+    public void setCity(City city){this.city=city;}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,6 +53,7 @@ public class User {
         this.password = password;
     }
 
+
     @Transient
     public String getPasswordConfirm() {
         return passwordConfirm;
@@ -55,6 +62,8 @@ public class User {
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
+
+
 
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -97,4 +106,6 @@ public class User {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+
+
 }

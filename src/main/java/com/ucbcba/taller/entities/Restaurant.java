@@ -4,6 +4,7 @@ package com.ucbcba.taller.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Blob;
+import java.util.logging.Level;
 
 @Entity
 public class Restaurant {
@@ -32,6 +33,9 @@ public class Restaurant {
     @JoinColumn(name="city_id")
     private City city;
 
+    @ManyToOne
+    @JoinColumn(name="levelPrice_id")
+    private LevelPrice levelPrice;
 
     public Integer getId() {
         return id;
@@ -80,4 +84,8 @@ public class Restaurant {
     public City getCity(){return city;}
 
     public void setCity(City city){this.city=city;}
+
+    public LevelPrice getLevelPrice(){return levelPrice;}
+
+    public void setLevelPrice(LevelPrice levelprice){this.levelPrice = levelprice;}
 }
